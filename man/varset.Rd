@@ -4,13 +4,9 @@
 \name{varset}
 \alias{varset}
 \title{Variant (VAR) data}
-<<<<<<< HEAD
 \format{
 A data matrix with 1101 genes variants and 3 samples
 }
-=======
-\format{A data matrix with 1101 genes variants and 3 samples}
->>>>>>> upstream/master
 \usage{
 varset
 }

@@ -7,11 +7,7 @@
 computePS(rd1, cd1, cd2, profile)
 }
 \arguments{
-<<<<<<< HEAD
 \item{rd1}{: A numeric value of the reference sample (R) on which to estimate the profile statistics for a given row}
-=======
-\item{rd1}{: A numeric value of the reference sample (R) on which to estimate the profile statistics for a given gene, gene probe or gene copy segment}
->>>>>>> upstream/master
 
 \item{cd1}{: A numeric value of the comparison sample 1 (S1) for a given gene, gene probe or gene copy segment}
 

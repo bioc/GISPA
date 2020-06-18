@@ -13,15 +13,9 @@
 #'@param cpt.method : Choice of single or multiple changepoint model. Default is "BinSeg".
 #'@param cpt.max : The maximum number of changepoints  to search for using "BinSeg" method. Default is 60. This number is dependent on the number of input data points
 #'@return The returned value is a data matrix including the original data along with between gene profile statistics and identified changepoints.
-<<<<<<< HEAD
 #'@import Biobase
 #'@import GSEABase
 #'@importFrom plyr adply
-=======
-#'@import plyr
-#'@import Biobase
-#'@import GSEABase
->>>>>>> upstream/master
 #'@importFrom data.table data.table
 #'@importFrom genefilter rowVars
 #'@include computePS.R
@@ -62,7 +56,6 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
     if(!is.null(g.set)) {
       eset <- eset[!is.na(geneIds(g.set)),]
     } else{
-<<<<<<< HEAD
     
     }
     
@@ -70,14 +63,6 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
     #filter zero samples data columns based on the profile direction
     if(is.na(f.profiles[f])) {
       stop(paste('Provide ', f ,' feature profile', sep=""))
-=======
-      
-    }
-    
-    #filter zero samples data columns based on the profile direction
-    if(is.na(f.profiles[f])) {
-      stop(paste('pPovide ', f ,' feature profile', sep=""))
->>>>>>> upstream/master
     }
     if(f.profiles[f] == "up"){
       exprs.ftd <- exprs(eset[[1]])[exprs(eset[[1]])[,ref.samp.idx]!=0,]
@@ -99,20 +84,12 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
                       exprs.rvars[[ref.samp.idx]],
                       exprs.rvars[[comp.samp.idx[1]]],
                       exprs.rvars[[comp.samp.idx[2]]], 
-<<<<<<< HEAD
                       profile=f.profiles[f]))
     
     #transform back '0.001' and '0.999' values to 0 and 1
     exprs.rvars[exprs.rvars == 0.001] <- 0
     exprs.rvars[exprs.rvars == 0.999] <- 1
-=======
-                      profile="up"))
-    
-    #transform back '0.001' and '0.999' values to 0 and 1
-    exprs.rvars[exprs.rvars == 0] <- 0.001
-    exprs.rvars[exprs.rvars == 1] <- 0.999
->>>>>>> upstream/master
-    
+
     #append the estimate PS to data
     exprs.psval <- cbind(exprs.rvars, ps_val[,2])
     colnames(exprs.psval)[ncol(exprs.psval)] <- paste("ps", f, sep="")
@@ -122,11 +99,7 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
                                exprs.psval[,ncol(exprs.psval)]!="-Inf",]
     exprs.psftd <- exprs.psftd[!is.na(exprs.psftd[,ncol(exprs.psftd)]),]
     
-<<<<<<< HEAD
     if (nrow(exprs.psftd)<5){
-=======
-    if (nrow(exprs.psftd)<10){
->>>>>>> upstream/master
       stop(paste ('Not enough genes in ', f, ' to proceed'))
     }
     
@@ -134,7 +107,6 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
       egs <- data.frame(fData(eset[[1]])$'gene')
       colnames(egs) <- c("gene")
       rownames(egs) <- row.names(fData(eset[[1]]))
-<<<<<<< HEAD
       
       exprs.tmp <- merge(egs, exprs.psftd,
                            all.y=TRUE, by="row.names", sort=FALSE)
@@ -150,24 +122,11 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
       exprs.psm <- as.matrix(exprs.eset1 [,3:5])
       rownames(exprs.psm) <- exprs.eset1$Row.names
       rownames(exprs.eset1) <- exprs.eset1$Row.names
-=======
-
-    if(f == 1){
-      
-      exprs.eset1 <- merge(egs, exprs.psftd,
-                           all.y=TRUE, by="row.names", sort=FALSE)
-      if (nrow(exprs.eset1)<10){
-        stop(paste ('row names do not match in ',f,' & feature data',sep=""))
-      }
-      exprs.psm <- NULL
-      exprs.psm <- as.matrix(exprs.eset1 [,3:5])
->>>>>>> upstream/master
       exprs.pm <- cbind(exprs.eset1 [,6])
       colnames(exprs.pm) <- "ps1"
       rownames(exprs.pm) <- exprs.eset1$Row.names
       exprs.psm.gene <- exprs.eset1$gene
       
-<<<<<<< HEAD
       if(f == 1){
         exprs.eset <- exprs.eset1
       }
@@ -176,45 +135,20 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
       exprs.eset2 <- exprs.tmp
       exprs.eset <- merge(exprs.eset1, exprs.eset2, by="gene", sort=FALSE)
       if (nrow(exprs.eset)<5){
-=======
-    } else if (f == 2){
-      
-      exprs.eset2 <- merge(egs, exprs.psftd,
-                           all.y=TRUE, by="row.names", sort=FALSE)
-      if (nrow(exprs.eset2)<10){
-        stop(paste ('row names do not match in ',f,' & feature data',sep=""))
-      }
-      exprs.eset <- merge(exprs.eset1, exprs.eset2, by="gene", sort=FALSE)
-      if (nrow(exprs.eset)<10){
->>>>>>> upstream/master
         stop('not enough data points to apply change point model')
       }
       rownames(exprs.eset) <- paste(exprs.eset$Row.names.x,
                                     exprs.eset$Row.names.y,
                                     sep=";")
       exprs.psm <- cbind(exprs.eset[,c(3:5,8:10)])
-<<<<<<< HEAD
       rownames(exprs.psm) <- rownames(exprs.eset)
-=======
->>>>>>> upstream/master
       exprs.pm <- exprs.eset[,c(6,11)]
       exprs.psm.gene <- exprs.eset$gene
       
     } else if (f == 3){
-<<<<<<< HEAD
       exprs.eset3 <- exprs.tmp
       exprs.eset <- merge(exprs.eset, exprs.eset3, by="gene", sort=FALSE)
       if (nrow(exprs.eset)<5){
-=======
-      
-      exprs.eset3 <- merge(egs, exprs.psftd,
-                           all.y=TRUE, by="row.names", sort=FALSE)
-      if (nrow(exprs.eset3)<10){
-        stop(paste ('row names do not match in ',f,' & feature data',sep=""))
-      }
-      exprs.eset <- merge(exprs.eset, exprs.eset3, by="gene", sort=FALSE)
-      if (nrow(exprs.eset)<10){
->>>>>>> upstream/master
         stop('not enough data points to apply change point model')
       }
       rownames(exprs.eset) <- paste(exprs.eset$Row.names.x, 
@@ -222,10 +156,7 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
                                     exprs.eset$Row.names, 
                                     sep=";")
       exprs.psm <- cbind(exprs.eset[,c(3:5,8:10,13:15)])
-<<<<<<< HEAD
       rownames(exprs.psm) <- rownames(exprs.eset)
-=======
->>>>>>> upstream/master
       exprs.pm <- exprs.eset[,c(6,11,16)]
       exprs.psm.gene <- exprs.eset$gene
     } else{
@@ -246,19 +177,15 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
     stop('number of rows do not corrospond to number of genes')
   }
   gispa.output <- cptModel(exprs.pm, exprs.psm.gene, 
-<<<<<<< HEAD
-                              cpt.data, cpt.method, cpt.max, f.profiles[f], f)
-=======
-                              cpt.data, cpt.method, cpt.max)
->>>>>>> upstream/master
-  
+
+  cpt.data, cpt.method, cpt.max, f.profiles[f], f)
+
   cptPlot(gispa.output$cpt.dm, gispa.output$locate.cpts)
   
   if(is.null(gispa.output$cpt.dm)){
     stop("No gene sets were identified in the input data sets!")
   }else{
     gispa.output.psm <- merge(exprs.psm, gispa.output$cpt.dm, 
-<<<<<<< HEAD
                               by="row.names", all.y=TRUE, sort=FALSE, row.names=TRUE)
     gispa.output.psm <- gispa.output.psm[order(gispa.output.psm[,ncol(gispa.output.psm)-2],decreasing=TRUE),]
     rownames(gispa.output.psm) <- gispa.output.psm[,1]
@@ -266,14 +193,3 @@ GISPA = function(feature=1, f.sets, g.set=NULL,
     return(gispa_results <- list(cpt_out = gispa.output.psm, cpt_plot = gispa.output$cpt.dm, all_cutoffs = gispa.output$locate.cpts))
   }
 }
-=======
-                              by="row.names", all.y=TRUE, sort=FALSE)
-    gispa.dm <- as.matrix(gispa.output.psm[,-c(1)])
-    rownames(gispa.dm) <- gispa.output.psm[,1]
-    gispa.dm <- gispa.dm[order(gispa.dm[,ncol(gispa.dm)-2],decreasing=TRUE),]
-    return(gispa.dm)
-  }
-    
-}
-##END
->>>>>>> upstream/master

@@ -4,11 +4,7 @@
 \alias{cptModel}
 \title{Computes within and between gene feature profile statistics by feature and amongst features}
 \usage{
-<<<<<<< HEAD
 cptModel(psm, genelist, cpt.data, cpt.method, cpt.max, profile, feature)
-=======
-cptModel(psm, genelist, cpt.data, cpt.method, cpt.max)
->>>>>>> upstream/master
 }
 \arguments{
 \item{psm}{: A data matrix of estimated gene profile statistics for each feature}
@@ -20,13 +16,10 @@ cptModel(psm, genelist, cpt.data, cpt.method, cpt.max)
 \item{cpt.method}{: Choice of single or multiple changepoint model. Default is "BinSeg".}
 
 \item{cpt.max}{: The maximum number of changepoints to search for using "BinSeg" method. Default is 60. This number is dependent on the number of input data points}
-<<<<<<< HEAD
 
 \item{profile}{: The desired direction of genomic change. The values are "up" (default) or "down" to select for increased or decreased gene set profile, respectively}
 
 \item{feature}{: Analysis type i.e., one ('1'), two ('2') or three ('3') dimensional feature analysis.}
-=======
->>>>>>> upstream/master
 }
 \value{
 Estimated change points in the input data set
@@ -42,11 +35,7 @@ id <- 1000 ## number of probes
 s <- 3 ## number of sample groups
 dm <- matrix(runif(id*s,0,200), nrow=id, ncol=s, dimnames=list(paste("gene", 1:id, sep="") , paste("fs", 1:s, sep="")))
 genelist <- rownames(dm)
-<<<<<<< HEAD
 cptModel(dm, genelist, cpt.data="var", cpt.method="BinSeg", cpt.max=60, profile="up", feature=1)
-=======
-cptModel(dm, genelist, cpt.data="var", cpt.method="BinSeg", cpt.max=60)
->>>>>>> upstream/master
 }
 \author{
 Bhakti Dwivedi & Jeanne Kowalski

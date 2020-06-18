@@ -4,13 +4,9 @@
 \name{cnvset}
 \alias{cnvset}
 \title{Copy Number Variation (CNV) data}
-<<<<<<< HEAD
 \format{
 A data matrix with 534 genes copy change and 3 samples
 }
-=======
-\format{A data matrix with 534 genes copy change and 3 samples}
->>>>>>> upstream/master
 \usage{
 cnvset
 }
