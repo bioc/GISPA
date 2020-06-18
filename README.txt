@@ -33,15 +33,10 @@ install.packages( c("ggplot2", "genefilter", "changepoint", "HH", "latticeExtra"
 
 Installation
 ------------
-<<<<<<< HEAD
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("GISPA")
-=======
-source("http://bioconductor.org/biocLite.R")
-biocLite("GISPA")
->>>>>>> upstream/master
 
 
 Running GISPA from the GitHub
