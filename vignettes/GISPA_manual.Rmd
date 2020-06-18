@@ -75,7 +75,7 @@ cptSlopeplot(gispa.output=results$cpt_out, feature=2, type=c("EXP","VAR"), cpt=1
 
 Stacked barplot representing between-sample differences for the gene sets in the selected change point using expression and variant change data values. Sample group of interest (reference) is shown in red, while the two relative samples are shown in blue and green, respectively. 
 ```{r, message=F, warning=F, fig.width = 7, fig.height = 6}
-stackedBarplot(gispa.output=results,feature=2,cpt=1,type=c("EXP","CNV"),
+stackedBarplot(gispa.output=results$cpt_out,feature=2,cpt=1,type=c("EXP","CNV"),
                input.cex=1.5,input.cex.lab=1.5,input.gap=0.5,
                samp.col=c("red", "green", "blue"),
                strip.col=c("yellow", "bisque"))
