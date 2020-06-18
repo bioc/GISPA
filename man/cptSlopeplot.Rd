@@ -4,7 +4,11 @@
 \alias{cptSlopeplot}
 \title{Scatterplot representation of identified change points gene set slopes}
 \usage{
+<<<<<<< HEAD
 cptSlopeplot(gispa.output,feature,type,cpt)
+=======
+cptSlopeplot(gispa.output,feature,type)
+>>>>>>> upstream/master
 }
 \arguments{
 \item{gispa.output}{: A data matrix of between gene feature profile statistics for each feature with corrosponding identified changepoints. The row names should corrospond to genes or names to be displayed on y-axis}
@@ -12,8 +16,11 @@ cptSlopeplot(gispa.output,feature,type,cpt)
 \item{feature}{: Analysis type i.e., one ('1'), two ('2') or three ('3') dimensional feature analysis.}
 
 \item{type}{: Type of data, e.g., EXP  (default) for expression, VAR of variants, CNV for copy number change.}
+<<<<<<< HEAD
 
 \item{cpt}{: Change point cutoff to be highlighted. The default is 1}
+=======
+>>>>>>> upstream/master
 }
 \value{
 Scatterplot illustrating the average slopes by change point to access the best gene set profile
@@ -32,7 +39,11 @@ dm <- matrix(runif(id*s,0,10), nrow=id, ncol=s,
                  paste("sample", 1:s, sep="")))
 changepoints <- sort(sample(1:2, id, replace=TRUE))
 dm <- cbind(dm,changepoints)
+<<<<<<< HEAD
 cptSlopeplot(gispa.output=dm,feature=1,type="EXP",cpt=1)
+=======
+cptSlopeplot(gispa.output=dm,feature=1,type="EXP")
+>>>>>>> upstream/master
 }
 \author{
 Bhakti Dwivedi & Jeanne Kowalski

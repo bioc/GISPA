@@ -13,11 +13,16 @@
 #'@details This function expects the output from the main function of GISPA package, and highlights the gene set in the selected changepoints and their proportion in each of the three sample groups by data type.
 #'@return Barplot illustrating each sample proportion for each gene in the selected change point
 #'@author Bhakti Dwivedi & Jeanne Kowalski
+<<<<<<< HEAD
 #'@importFrom data.table data.table
 #'@importFrom HH likert
 #'@importFrom lattice panel.abline
 #'@importFrom lattice strip.custom
 #'@importFrom latticeExtra layer
+=======
+#'@import HH
+#'@import lattice
+>>>>>>> upstream/master
 #'@examples
 #'id <- 20 ## number of rows
 #'s <- 3 ## number of columns
@@ -34,7 +39,11 @@
 propBarplot = function(gispa.output, feature=1, cpt=1, 
                        input.cex=1.5, input.cex.lab=1.5, 
                        ft.col=c("grey0","grey60","grey90"),strip.col="yellow"){
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> upstream/master
   gispa.output <- gispa.output[gispa.output[,ncol(gispa.output)]!=1000,]
   gispa.output <- gispa.output[gispa.output[,ncol(gispa.output)]==cpt,]
               
@@ -49,7 +58,11 @@ propBarplot = function(gispa.output, feature=1, cpt=1,
         colnames(data_to_plot) <- c("gene", "DT1", "DT2", "changepoints")
         
         bp <- likert(~ DT1 + DT2 | changepoints,  data=data_to_plot, 
+<<<<<<< HEAD
                      scales=list(y=list(at=length(data_to_plot$gene):1, 
+=======
+                     scales=list(y=list(at=nrow(data_to_plot):1, 
+>>>>>>> upstream/master
                                         relation="free", 
                                         labels=data_to_plot$gene, 
                                         cex=input.cex, font=4), 
@@ -68,19 +81,32 @@ propBarplot = function(gispa.output, feature=1, cpt=1,
   }
   
   if(feature==3){
+<<<<<<< HEAD
     prop_one = 1/gispa.output[,1]
     prop_two = 1/gispa.output[,2]
     prop_three = 1/gispa.output[,3]
+=======
+    prop_one = 1/gispa.output[[,1]]
+    prop_two = 1/gispa.output[[,2]]
+    prop_three = 1/gispa.output[[,3]]
+>>>>>>> upstream/master
     total = prop_one + prop_two + prop_three
     Pone = (prop_one/total)*100
     Ptwo = (prop_two/total)*100
     Pthree = (prop_three/total)*100
     data_to_plot <- data.frame(rownames(gispa.output), Pone, Ptwo, Pthree, 
                                gispa.output[,ncol(gispa.output)])
+<<<<<<< HEAD
     colnames(data_to_plot) <- c("gene", "DT1", "DT2", "DT3", "changepoints")
     
     bp <- likert(~ DT1 + DT2 + DT3 | changepoints, data=data_to_plot, 
                  scales=list(y=list(at=length(data_to_plot$gene):1, 
+=======
+    colnames(data_to_plot) <- c("gene", "DF1", "DF2", "DF3", "changepoints")
+    
+    bp <- likert(~ DF1 + DF2 + DF3 | changepoints, data=data_to_plot, 
+                 scales=list(y=list(at=nrow(data_to_plot):1, 
+>>>>>>> upstream/master
                                     relation="free", 
                                     labels=data_to_plot$gene, 
                                     cex=input.cex, font=4), 

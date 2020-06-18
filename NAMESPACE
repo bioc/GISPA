@@ -11,11 +11,18 @@ import(Biobase)
 import(GSEABase)
 import(HH)
 import(graphics)
+<<<<<<< HEAD
+=======
+import(lattice)
+>>>>>>> upstream/master
 import(latticeExtra)
 import(plyr)
 import(scatterplot3d)
 import(stats)
+<<<<<<< HEAD
 importFrom(HH,likert)
+=======
+>>>>>>> upstream/master
 importFrom(changepoint,cpt.mean)
 importFrom(changepoint,cpt.meanvar)
 importFrom(changepoint,cpt.var)
@@ -23,6 +30,7 @@ importFrom(changepoint,cpts)
 importFrom(data.table,data.table)
 importFrom(data.table,setorder)
 importFrom(genefilter,rowVars)
+<<<<<<< HEAD
 importFrom(graphics,par)
 importFrom(graphics,plot)
 importFrom(graphics,text)
@@ -32,3 +40,5 @@ importFrom(latticeExtra,layer)
 importFrom(plyr,adply)
 importFrom(stats,ecdf)
 importFrom(stats,lm)
+=======
+>>>>>>> upstream/master

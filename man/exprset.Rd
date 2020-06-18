@@ -4,9 +4,13 @@
 \name{exprset}
 \alias{exprset}
 \title{Gene Variant (EXP) data}
+<<<<<<< HEAD
 \format{
 A data matrix with 1500 genes and 3 samples
 }
+=======
+\format{A data matrix with 1500 genes and 3 samples}
+>>>>>>> upstream/master
 \usage{
 exprset
 }

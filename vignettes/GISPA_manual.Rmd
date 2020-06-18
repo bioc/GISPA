@@ -70,12 +70,20 @@ The function also generates scatter plot of ranked gene sets by change points wi
 
 Changepoint scatter plot representing average slope computed over each change point for each data type for the reference sample relative to the other two comparison samples can be obtained as below:
 ```{r, message=F, warning=F}
+<<<<<<< HEAD
 cptSlopeplot(gispa.output=results$cpt_out, feature=2, type=c("EXP","VAR"), cpt=1)
+=======
+cptSlopeplot(gispa.output=results,feature=2,type=c("EXP","VAR"))
+>>>>>>> upstream/master
 ```
 
 Stacked barplot representing between-sample differences for the gene sets in the selected change point using expression and variant change data values. Sample group of interest (reference) is shown in red, while the two relative samples are shown in blue and green, respectively. 
 ```{r, message=F, warning=F, fig.width = 7, fig.height = 6}
+<<<<<<< HEAD
 stackedBarplot(gispa.output=results$cpt_out,feature=2,cpt=1,type=c("EXP","CNV"),
+=======
+stackedBarplot(gispa.output=results,feature=2,cpt=1,type=c("EXP","CNV"),
+>>>>>>> upstream/master
                input.cex=1.5,input.cex.lab=1.5,input.gap=0.5,
                samp.col=c("red", "green", "blue"),
                strip.col=c("yellow", "bisque"))
@@ -83,7 +91,11 @@ stackedBarplot(gispa.output=results$cpt_out,feature=2,cpt=1,type=c("EXP","CNV"),
 
 Stacked barplot representing between-feature differences for the gene sets in the selected change point. The percent contributions can be used to identify the driving feature(s) among the gene set, e.g., the displayed gene set is driven majorly by copy change (light grey) than expression (dark grey). 
 ```{r, message=F, warning=F, fig.width = 6, fig.height = 6}
+<<<<<<< HEAD
 propBarplot(gispa.output=results$cpt_plot,feature=2,cpt=1,input.cex=0.5,input.cex.lab=0.5,ft.col=c("grey0", "grey60"),strip.col="yellow")
+=======
+propBarplot(gispa.output=results,feature=2,cpt=1,input.cex=0.5,input.cex.lab=0.5,ft.col=c("grey0", "grey60"),strip.col="yellow")
+>>>>>>> upstream/master
 ```
 
 Likewise, user can run GISPA using a single-feature such as expression data to define gene sets with increased expression profile and three-feature analysis to define gene sets with increased expression, variant, and copy change profile in KMS-11

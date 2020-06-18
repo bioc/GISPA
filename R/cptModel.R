@@ -2,19 +2,29 @@
 #'@aliases cptModel
 #'@title Computes within and between gene feature profile statistics by feature and amongst features
 #'@description Computes the percentiles on the estimated profile statistics within a gene and across genes for one or more combination of feature or data types (expression, methylation, copy-number variation, or variant change)
+<<<<<<< HEAD
 #'@usage cptModel(psm, genelist, cpt.data, cpt.method, cpt.max, profile, feature)
+=======
+#'@usage cptModel(psm, genelist, cpt.data, cpt.method, cpt.max)
+>>>>>>> upstream/master
 #'@param psm : A data matrix of estimated gene profile statistics for each feature
 #'@param genelist : A vector of gene names or gene symbols corrosponding to the profile statistics
 #'@param cpt.data : Identify changepoints in the data using variance (cpt.var), mean (cpt.mean) or both (meanvar). Default is cpt.var.
 #'@param cpt.method : Choice of single or multiple changepoint model. Default is "BinSeg".
 #'@param cpt.max : The maximum number of changepoints to search for using "BinSeg" method. Default is 60. This number is dependent on the number of input data points
+<<<<<<< HEAD
 #'@param profile : The desired direction of genomic change. The values are "up" (default) or "down" to select for increased or decreased gene set profile, respectively
 #'@param feature : Analysis type i.e., one ('1'), two ('2') or three ('3') dimensional feature analysis.
+=======
+>>>>>>> upstream/master
 #'@details This function estimates within and between feature profile statistics by gens in addition to the summed percentiles and successive differences
 #'@return Estimated change points in the input data set
 #'@author Bhakti Dwivedi & Jeanne Kowalski
 #'@keywords Profile Statistics
+<<<<<<< HEAD
 #'@importFrom stats ecdf
+=======
+>>>>>>> upstream/master
 #'@importFrom data.table data.table
 #'@importFrom data.table setorder
 #'@importFrom changepoint cpt.var
@@ -26,12 +36,20 @@
 #'s <- 3 ## number of sample groups
 #'dm <- matrix(runif(id*s,0,200), nrow=id, ncol=s, dimnames=list(paste("gene", 1:id, sep="") , paste("fs", 1:s, sep="")))
 #'genelist <- rownames(dm)
+<<<<<<< HEAD
 #'cptModel(dm, genelist, cpt.data="var", cpt.method="BinSeg", cpt.max=60, profile="up", feature=1)
 #'@export
 
 cptModel = function(psm, genelist,
                     cpt.data="var", cpt.method="BinSeg", cpt.max=60, profile, feature) {
                     
+=======
+#'cptModel(dm, genelist, cpt.data="var", cpt.method="BinSeg", cpt.max=60)
+#'@export
+
+cptModel = function(psm, genelist, cpt.data="var", cpt.method="BinSeg", cpt.max=60) {
+
+>>>>>>> upstream/master
   .I <- NULL
   fs <- NULL
   rn <- NULL
@@ -51,6 +69,7 @@ cptModel = function(psm, genelist,
   cof_stat <- dt_per[dt_per[,.I[which.min(WGFPS)], by=genelist] [['V1']]]
   row_header <- cof_stat[,genelist,rn]
   #reprep the data
+<<<<<<< HEAD
   cof_stat = cof_stat[, -c("WGFPS", "genelist", "rn")]
   
   #apply ecdf to each profile statistics column across genes
@@ -76,6 +95,28 @@ cptModel = function(psm, genelist,
                bgfps_stat_log10_sort$Neg_log10_BGFPS[i+1]
     if(i == length(bgfps_stat_log10_sort$Neg_log10_BGFPS) ){
       diff[i] <- 0    #assign the last element a zero value
+=======
+  cof_stat <- cof_stat[, -c("WGFPS", "genelist", "rn")]
+  
+  #apply ecdf to each profile statistics column across genes
+  bgfps <- apply(cof_stat, 2, function(c) ecdf(c)(c))
+  BGFPS <- rowSums(bgfps)
+  #log transformation
+  Neg_log10_BGFPS <- -log(BGFPS,10)
+  
+  
+  bgfps_stat_log <- cbind(row_header,bgfps,BGFPS,Neg_log10_BGFPS)
+  #sort log transformed values
+  bgfps_stat_log10_sort = bgfps_stat_log[ order(-Neg_log10_BGFPS), ]
+  
+  #successive differences of sorted log transformed profile statistics
+  diff <- c( rep(0,length(bgfps_stat_log10_sort$Neg_log10_BGFPS)) )
+  for (i in seq_along(bgfps_stat_log10_sort$Neg_log10_BGFPS)){
+    diff[i] <- bgfps_stat_log10_sort$Neg_log10_BGFPS[i] - 
+               bgfps_stat_log10_sort$Neg_log10_BGFPS[i+1]
+    if(i == length(bgfps_stat_log10_sort$Neg_log10_BGFPS) ){
+      diff[i]=0    #assign the last element a zero value
+>>>>>>> upstream/master
     }
   }
   
@@ -114,6 +155,7 @@ cptModel = function(psm, genelist,
     stop("No gene sets by changepoints were identified in the data set!")
   }else{
     #add the estimated changepoint locations to the data points  
+<<<<<<< HEAD
     level <- character()
     l <- 1
     locate.cpts <- cpts(diff.cpts)
@@ -123,10 +165,21 @@ cptModel = function(psm, genelist,
       if(i==1){
         for(j in 1:cpts(diff.cpts)[i]){
           level[j]<-l
+=======
+    level=character()
+    l = 1
+    locate.cpts <- cpts(diff.cpts)
+    for(i in 1:length(cpts(diff.cpts)) ) {
+      locate.cpts[i] <- bgfps_stat_log10_sort$Neg_log10_BGFPS[cpts(diff.cpts)[i]]
+      if(i==1){
+        for(j in 1:cpts(diff.cpts)[i]){
+          level[j]=l
+>>>>>>> upstream/master
         }
       }else{
         a <- cpts(diff.cpts)[i-1]+1
         for(j in a:cpts(diff.cpts)[i]){
+<<<<<<< HEAD
           level[j]<-l
         }
       }
@@ -138,6 +191,19 @@ cptModel = function(psm, genelist,
         }
       }
       l<-l+1
+=======
+          level[j]=l
+        }
+      }
+      if(i==length(cpts(diff.cpts))){
+        l=1000
+        a <- cpts(diff.cpts)[i]+1
+        for(j in a:length(diff)){
+          level[j]=1000
+        }
+      }
+      l=l+1
+>>>>>>> upstream/master
     }
     locate.cpts <- as.numeric(locate.cpts)
     locate.cpts <- round(locate.cpts,digits=2)
@@ -154,5 +220,9 @@ cptModel = function(psm, genelist,
   cpt.dm <- as.matrix(cpt.out[,-c(1,2)])
   rownames(cpt.dm) <- cpt.out[,1]
   
+<<<<<<< HEAD
   return (data = list(cpt.dm = cpt.dm, locate.cpts = locate.cpts))
+=======
+  return (data = list(cpt.dm=cpt.dm, locate.cpts=locate.cpts))
+>>>>>>> upstream/master
 }

@@ -2,20 +2,32 @@
 #'@aliases cptSlopeplot
 #'@title Scatterplot representation of identified change points gene set slopes
 #'@description This function will plot the average slopes estimated over all gene sets within each change point by data types
+<<<<<<< HEAD
 #'@usage cptSlopeplot(gispa.output,feature,type,cpt)
 #'@param gispa.output : A data matrix of between gene feature profile statistics for each feature with corrosponding identified changepoints. The row names should corrospond to genes or names to be displayed on y-axis
 #'@param feature : Analysis type i.e., one ('1'), two ('2') or three ('3') dimensional feature analysis.
 #'@param type : Type of data, e.g., EXP  (default) for expression, VAR of variants, CNV for copy number change. 
 #'@param cpt : Change point cutoff to be highlighted. The default is 1
+=======
+#'@usage cptSlopeplot(gispa.output,feature,type)
+#'@param gispa.output : A data matrix of between gene feature profile statistics for each feature with corrosponding identified changepoints. The row names should corrospond to genes or names to be displayed on y-axis
+#'@param feature : Analysis type i.e., one ('1'), two ('2') or three ('3') dimensional feature analysis.
+#'@param type : Type of data, e.g., EXP  (default) for expression, VAR of variants, CNV for copy number change. 
+>>>>>>> upstream/master
 #'@details This function expects the output from GISPA function of GISPA package, and highlights the gene set slope profile in the selected changepoints
 #'@return Scatterplot illustrating the average slopes by change point to access the best gene set profile
 #'@author Bhakti Dwivedi & Jeanne Kowalski
 #'@import scatterplot3d
 #'@importFrom data.table data.table
+<<<<<<< HEAD
 #'@importFrom graphics plot
 #'@importFrom graphics par
 #'@importFrom graphics text
 #'@importFrom stats lm
+=======
+#'@import stats
+#'@import graphics
+>>>>>>> upstream/master
 #'@examples
 #'id <- 200 ## number of rows
 #'s <- 3 ## number of columns
@@ -24,6 +36,7 @@
 #'                  paste("sample", 1:s, sep="")))
 #'changepoints <- sort(sample(1:2, id, replace=TRUE))
 #'dm <- cbind(dm,changepoints)
+<<<<<<< HEAD
 #'cptSlopeplot(gispa.output=dm,feature=1,type="EXP",cpt=1)
 #'@export
 
@@ -32,6 +45,16 @@ cptSlopeplot <- function(gispa.output, feature=1, type="EXP", cpt=1){
   changepoints <- NULL # Setting the variables to NULL first
   ##select for the changepoint of interest
   gispa.output <- gispa.output[gispa.output[,ncol(gispa.output)]!=1000,]
+=======
+#'cptSlopeplot(gispa.output=dm,feature=1,type="EXP")
+#'@export
+
+cptSlopeplot <- function(gispa.output, feature=1, type="EXP"){
+  
+  changepoints <- NULL # Setting the variables to NULL first
+  gispa.output <- gispa.output[gispa.output[,ncol(gispa.output)]!=1000,]
+  cpt <- 1
+>>>>>>> upstream/master
   
   if(feature==1){
     #data type 1
@@ -194,5 +217,9 @@ cptSlopeplot <- function(gispa.output, feature=1, type="EXP", cpt=1){
          pos=4,
          offset=1.2) 
   }
+<<<<<<< HEAD
+=======
+  
+>>>>>>> upstream/master
   return (slopePlot)
 }
