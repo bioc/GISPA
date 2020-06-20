@@ -22,7 +22,7 @@ Gene Integrated Set Profile Analysis (GISPA) is a method designed to define gene
 1)  Download and install R or RStudio (version 3.2.2. or later) from https://cran.r-project.organd
 2)  Open R and install the below required packages:
 ```{r, message=F, warning=F, eval=F}
-install.packages( c("changepoint", "data.table", "genefilter", "graphics", "HH", "knitr", "latticeExtra", "lattice", "plyr", "scatterplot3d", "stats", "Biobase", "GSEABase") )
+##install.packages( c("changepoint", "data.table", "genefilter", "graphics", "HH", "knitr", "latticeExtra", "lattice", "plyr", "scatterplot3d", "stats", "Biobase", "GSEABase") )
 ```
 
 
