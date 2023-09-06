@@ -1,7 +1,7 @@
 Package: GISPA
 Type: Package
 Title: GISPA: Method for Gene Integrated Set Profile Analysis
-Version: 1.25.0
+Version: 1.25.1
 Date: 2020-06-16
 Author: Bhakti Dwivedi and Jeanne Kowalski
 Maintainer: Bhakti Dwivedi <bhakti.dwivedi@emory.edu>
@@ -16,7 +16,7 @@ Imports: Biobase, changepoint, data.table, genefilter, graphics,
 License: GPL-2
 LazyData: true
 Collate: 'cptPlot.R' 'cptModel.R' 'computePS.R' 'GISPA.R'
-        'cptSlopeplot.R' 'data.R' 'propBarplot.R' 'stackedBarplot.R'
+        'cptSlopeplot.R' 'data.R' 'propBarplot.R' 'stackedBarplot.R' 'zzz.R'
 biocViews: StatisticalMethod,GeneSetEnrichment,GenomeWideAssociation
 Suggests: knitr
 VignetteBuilder: knitr
@@ -28,3 +28,4 @@ git_last_commit: f78cbe0
 git_last_commit_date: 2020-04-27
 Date/Publication: 2020-04-27
 Packaged: 2020-04-28 02:19:32 UTC; biocbuild
+PackageStatus: Deprecated
