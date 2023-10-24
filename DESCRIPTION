@@ -1,7 +1,7 @@
 Package: GISPA
 Type: Package
 Title: GISPA: Method for Gene Integrated Set Profile Analysis
-Version: 1.26.0
+Version: 1.27.0
 Date: 2020-06-16
 Author: Bhakti Dwivedi and Jeanne Kowalski
 Maintainer: Bhakti Dwivedi <bhakti.dwivedi@emory.edu>
